@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <h1>Caluladora de IVA</h1>
+    <anadir></anadir>
+    <calculo></calculo>
+    <tabla></tabla>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import anadir from './components/Anadir.vue'
+import tabla from './components/Tabla.vue'
+import calculo from './components/Calculo.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    anadir,
+    tabla,
+    calculo
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

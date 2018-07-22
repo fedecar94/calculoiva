@@ -1,6 +1,6 @@
 {
-  "name": "calculoIva",
-  "short_name": "calculoIva",
+  "name": "Calculadora rapida del iva",
+  "short_name": "Calculadoradel iva",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
