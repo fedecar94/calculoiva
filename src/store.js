@@ -19,7 +19,7 @@ export default new Vuex.Store({
   },
   actions: {
     setingresos (store, newData) {
-      store.commit('SET_EGRESOS', newData)
+      store.commit('SET_INGRESOS', newData)
     },
     setegresos (store, newData) {
       store.commit('SET_EGRESOS', newData)

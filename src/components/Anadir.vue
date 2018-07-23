@@ -4,17 +4,13 @@
     <br>
     <form>
       <div class="row">
-        <div class="col col-md-1">
-          <label>Tipo de factura</label>
-        </div>
-        <div class="col col-md-3">
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-              <input type="radio" name="radio" id="in" v-model="tipo" v-bind:value="'i'" autocomplete="off" checked> Ingreso
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="radio" id="eg" v-model="tipo" v-bind:value="'e'" autocomplete="off"> Egreso
-            </label>
+        <div class="col col-md-4">
+          <div class="form-group">
+            <label for="">Tipo de factura</label>
+            <select class="form-control" v-model="tipo">
+              <option>Ingreso</option>
+              <option>Egreso</option>
+            </select>
           </div>
         </div>
         <div class="form-group col-md-4">
@@ -39,9 +35,7 @@
         </div>
       </div>
     </form>
-    <pre>
-      {{tipo}}
-    </pre>
+    <button @click="anadir" type="button" class="btn btn-primary">Añadir</button>
   </div>
 </template>
 
@@ -50,7 +44,7 @@ export default {
   name: 'anadir',
   data: function () {
     return {
-      tipo: 'i',
+      tipo: 'Ingreso',
       nuevo: {
         'numero': '',
         'nombre': '',
@@ -79,8 +73,33 @@ export default {
     }
   },
   methods: {
-    anadir: function (factura) {
-
+    anadir: function () {
+      if (this.nuevo.numero === '') { this.nuevo.numero = 'Sin numero' }
+      if (this.nuevo.nombre === '') { this.nuevo.nombre = 'Sin nombre' }
+      if (this.nuevo.iva10 === '') { this.nuevo.iva10 = 0 }
+      if (this.nuevo.iva05 === '') { this.nuevo.iva05 = 0 }
+      if (this.nuevo.ivaEX === '') { this.nuevo.ivaEX = 0 }
+      let array = []
+      if (this.tipo === 'Ingreso') {
+        for (let i = 0; i < this.ingresos.length; i++) {
+          array.push(this.ingresos[i])
+        }
+        array.push(this.nuevo)
+        this.ingresos = array
+      } else {
+        for (let i = 0; i < this.egresos.length; i++) {
+          array.push(this.egresos[i])
+        }
+        array.push(this.nuevo)
+        this.egresos = array
+      }
+      this.nuevo = {
+        'numero': '',
+        'nombre': '',
+        'iva10': '',
+        'iva05': '',
+        'ivaEX': ''
+      }
     }
   }
 }

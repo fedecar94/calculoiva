@@ -2,7 +2,9 @@
   <div class="container">
     <h1>Caluladora de IVA</h1>
     <anadir></anadir>
+    <br>
     <calculo></calculo>
+    <br>
     <tabla></tabla>
 
   </div>
