@@ -8,8 +8,8 @@
           <div class="form-group">
             <label for="">Tipo de factura</label>
             <select class="form-control" v-model="tipo">
-              <option>Ingreso</option>
-              <option>Egreso</option>
+              <option>Compra</option>
+              <option>Venta</option>
             </select>
           </div>
         </div>
@@ -44,31 +44,34 @@ export default {
   name: 'anadir',
   data: function () {
     return {
-      tipo: 'Ingreso',
+      tipo: 'Compra',
       nuevo: {
         'numero': '',
         'nombre': '',
         'iva10': '',
         'iva05': '',
-        'ivaEX': ''
+        'ivaEX': '',
+        'timbrado': '',
+        'condicion': 'Contado',
+        'cuotas': 0
       }
     }
   },
   computed: {
-    ingresos: {
+    Ventas: {
       get: function () {
-        return this.$store.state.ingresos
+        return this.$store.state.Ventas
       },
       set: function (newValue) {
-        this.$store.dispatch('setingresos', newValue)
+        this.$store.dispatch('setVentas', newValue)
       }
     },
-    egresos: {
+    Compras: {
       get: function () {
-        return this.$store.state.egresos
+        return this.$store.state.Compras
       },
       set: function (newValue) {
-        this.$store.dispatch('setegresos', newValue)
+        this.$store.dispatch('setCompras', newValue)
       }
     }
   },
@@ -79,26 +82,35 @@ export default {
       if (this.nuevo.iva10 === '') { this.nuevo.iva10 = 0 }
       if (this.nuevo.iva05 === '') { this.nuevo.iva05 = 0 }
       if (this.nuevo.ivaEX === '') { this.nuevo.ivaEX = 0 }
-      let array = []
-      if (this.tipo === 'Ingreso') {
-        for (let i = 0; i < this.ingresos.length; i++) {
-          array.push(this.ingresos[i])
-        }
-        array.push(this.nuevo)
-        this.ingresos = array
+      if (this.nuevo.timbrado === '') { this.nuevo.timbrado = 0 }
+      if (this.nuevo.condicion === 'Contado') {
+        this.nuevo.cuotas = 0
       } else {
-        for (let i = 0; i < this.egresos.length; i++) {
-          array.push(this.egresos[i])
+        if (this.nuevo.cuotas <= 0) { this.nuevo.cuotas = 1 }
+      }
+      let array = []
+      if (this.tipo === 'Venta') {
+        for (let i = 0; i < this.Ventas.length; i++) {
+          array.push(this.Ventas[i])
         }
         array.push(this.nuevo)
-        this.egresos = array
+        this.Ventas = array
+      } else {
+        for (let i = 0; i < this.Compras.length; i++) {
+          array.push(this.Compras[i])
+        }
+        array.push(this.nuevo)
+        this.Compras = array
       }
       this.nuevo = {
         'numero': '',
         'nombre': '',
         'iva10': '',
         'iva05': '',
-        'ivaEX': ''
+        'ivaEX': '',
+        'timbrado': '',
+        'condicion': 'Contado',
+        'cuotas': 0
       }
     }
   }

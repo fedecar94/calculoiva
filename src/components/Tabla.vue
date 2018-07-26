@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <h4>Ingresos</h4>
+    <h4>Ventas</h4>
     <table class="table">
       <thead>
         <tr>
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="factura in ingresos" v-bind:key="factura.index">
+        <tr v-for="factura in Ventas" v-bind:key="factura.index">
           <td>{{factura.numero}}</td>
           <td>{{factura.nombre}}</td>
           <td style="text-align:right">{{factura.iva10}}</td>
@@ -26,7 +26,7 @@
       </tbody>
     </table>
     <br>
-    <h4>Egresos</h4>
+    <h4>Compras</h4>
     <table class="table">
       <thead>
         <tr>
@@ -39,7 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="factura in egresos" v-bind:key="factura.index">
+        <tr v-for="factura in Compras" v-bind:key="factura.index">
           <td>{{factura.numero}}</td>
           <td>{{factura.nombre}}</td>
           <td style="text-align:right">{{factura.iva10}}</td>
@@ -57,39 +57,41 @@
 export default {
   name: 'tabla',
   computed: {
-    ingresos: {
+    Ventas: {
       get: function () {
-        return this.$store.state.ingresos
+        return this.$store.state.Ventas
       },
       set: function (newValue) {
-        this.$store.dispatch('setingresos', newValue)
+        this.$store.dispatch('setVentas', newValue)
       }
     },
-    egresos: {
+    Compras: {
       get: function () {
-        return this.$store.state.egresos
+        return this.$store.state.Compras
       },
       set: function (newValue) {
-        this.$store.dispatch('setegresos', newValue)
+        this.$store.dispatch('setCompras', newValue)
       }
     }
   },
   methods: {
     eliminarIngreso: function (factura) {
       let array = []
-      for (let i = 0; i < this.ingresos.length; i++) {
-        if (factura !== this.ingresos[i])
-          array.push(this.ingresos[i])
+      for (let i = 0; i < this.Ventas.length; i++) {
+        if (factura !== this.Ventas[i]) {
+          array.push(this.Ventas[i])
+        }
       }
-      this.ingresos = array
+      this.Ventas = array
     },
     eliminarEgreso: function (factura) {
       let array = []
-      for (let i = 0; i < this.egresos.length; i++) {
-        if (factura !== this.egresos[i])
-          array.push(this.egresos[i])
+      for (let i = 0; i < this.Compras.length; i++) {
+        if (factura !== this.Compras[i]) {
+          array.push(this.Compras[i])
+        }
       }
-      this.egresos = array
+      this.Compras = array
     }
   }
 }

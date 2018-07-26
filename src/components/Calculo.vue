@@ -6,23 +6,23 @@
     <div class="col col-md-6">
       <table class="table">
         <tr style="text-align:center">
-          <th>TOTAL INGRESOS</th>
+          <th>TOTAL Ventas</th>
           <th>LIQUIDACION</th>
           <th>IMPUESTO</th>
         </tr>
         <tr>
-          <th>Ingresos 10%</th>
-          <td style="text-align:right">{{Math.round(totalIngresos.iva10 / 1.1)}}</td>
-          <td style="text-align:right">{{Math.round(totalIngresos.iva10 / 11)}}</td>
+          <th>Ventas 10%</th>
+          <td style="text-align:right">{{Math.round(totalVentas.iva10 / 1.1)}}</td>
+          <td style="text-align:right">{{Math.round(totalVentas.iva10 / 11)}}</td>
         </tr>
         <tr>
-          <th>Ingresos 5%</th>
-          <td style="text-align:right">{{Math.round(totalIngresos.iva05 / 1.05)}}</td>
-          <td style="text-align:right">{{Math.round(totalIngresos.iva05 / 21)}}</td>
+          <th>Ventas 5%</th>
+          <td style="text-align:right">{{Math.round(totalVentas.iva05 / 1.05)}}</td>
+          <td style="text-align:right">{{Math.round(totalVentas.iva05 / 21)}}</td>
         </tr>
         <tr>
-          <th>Ingresos excenta</th>
-          <td style="text-align:right">{{totalIngresos.ivaEX}}</td>
+          <th>Ventas excenta</th>
+          <td style="text-align:right">{{totalVentas.ivaEX}}</td>
           <td style="text-align:right">-</td>
         </tr>
       </table>
@@ -30,23 +30,23 @@
     <div class="col col-md-6">
       <table class="table">
         <tr style="text-align:center">
-          <th>TOTAL EGRESOS</th>
+          <th>TOTAL Compras</th>
           <th>LIQUIDACION</th>
           <th>IMPUESTO</th>
         </tr>
         <tr>
-          <th>Egresos 10%</th>
-          <td style="text-align:right">{{Math.round(totalEgresos.iva10 / 1.1)}}</td>
-          <td style="text-align:right">{{Math.round(totalEgresos.iva10 / 11)}}</td>
+          <th>Compras 10%</th>
+          <td style="text-align:right">{{Math.round(totalCompras.iva10 / 1.1)}}</td>
+          <td style="text-align:right">{{Math.round(totalCompras.iva10 / 11)}}</td>
         </tr>
         <tr>
-          <th>Egresos 5%</th>
-          <td style="text-align:right">{{Math.round(totalEgresos.iva05 / 1.05)}}</td>
-          <td style="text-align:right">{{Math.round(totalEgresos.iva05 / 21)}}</td>
+          <th>Compras 5%</th>
+          <td style="text-align:right">{{Math.round(totalCompras.iva05 / 1.05)}}</td>
+          <td style="text-align:right">{{Math.round(totalCompras.iva05 / 21)}}</td>
         </tr>
         <tr>
-          <th>Egresos excenta</th>
-          <td style="text-align:right">{{totalEgresos.ivaEX}}</td>
+          <th>Compras excenta</th>
+          <td style="text-align:right">{{totalCompras.ivaEX}}</td>
           <td style="text-align:right">-</td>
         </tr>
       </table>
@@ -63,36 +63,36 @@
 export default {
   name: 'calculo',
   computed: {
-    ingresos () {
-      return this.$store.state.ingresos
+    Ventas () {
+      return this.$store.state.Ventas
     },
-    egresos () {
-      return this.$store.state.egresos
+    Compras () {
+      return this.$store.state.Compras
     },
-    totalIngresos () {
+    totalVentas () {
       var total = {'iva10': 0, 'iva05': 0, 'ivaEX': 0}
-      for (let i = 0; i < this.ingresos.length; i++) {
-        total.iva10 = total.iva10 + parseInt(this.ingresos[i].iva10)
-        total.iva05 = total.iva05 + parseInt(this.ingresos[i].iva05)
-        total.ivaEX = total.ivaEX + parseInt(this.ingresos[i].ivaEX)
+      for (let i = 0; i < this.Ventas.length; i++) {
+        total.iva10 = total.iva10 + parseInt(this.Ventas[i].iva10)
+        total.iva05 = total.iva05 + parseInt(this.Ventas[i].iva05)
+        total.ivaEX = total.ivaEX + parseInt(this.Ventas[i].ivaEX)
       }
       return total
     },
-    totalEgresos () {
+    totalCompras () {
       var total = {'iva10': 0, 'iva05': 0, 'ivaEX': 0}
-      for (let i = 0; i < this.egresos.length; i++) {
-        total.iva10 = total.iva10 + parseInt(this.egresos[i].iva10)
-        total.iva05 = total.iva05 + parseInt(this.egresos[i].iva05)
-        total.ivaEX = total.ivaEX + parseInt(this.egresos[i].ivaEX)
+      for (let i = 0; i < this.Compras.length; i++) {
+        total.iva10 = total.iva10 + parseInt(this.Compras[i].iva10)
+        total.iva05 = total.iva05 + parseInt(this.Compras[i].iva05)
+        total.ivaEX = total.ivaEX + parseInt(this.Compras[i].ivaEX)
       }
       return total
     },
     totalGeneral () {
       let total = 0
-      total = Math.round(this.totalIngresos.iva10 / 11)
-      total = total + Math.round(this.totalIngresos.iva05 / 21)
-      total = total - Math.round(this.totalEgresos.iva10 / 11)
-      total = total - Math.round(this.totalEgresos.iva05 / 21)
+      total = Math.round(this.totalVentas.iva10 / 11)
+      total = total + Math.round(this.totalVentas.iva05 / 21)
+      total = total - Math.round(this.totalCompras.iva10 / 11)
+      total = total - Math.round(this.totalCompras.iva05 / 21)
       return total
     }
   }

@@ -5,24 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    ingresos: [],
-    egresos: []
+    Ventas: [],
+    Compras: []
 
   },
   mutations: {
-    'SET_INGRESOS': function (state, newData) {
-      state.ingresos = newData
+    'SET_Ventas': function (state, newData) {
+      state.Ventas = newData
     },
-    'SET_EGRESOS': function (state, newData) {
-      state.egresos = newData
+    'SET_Compras': function (state, newData) {
+      state.Compras = newData
     }
   },
   actions: {
-    setingresos (store, newData) {
-      store.commit('SET_INGRESOS', newData)
+    setVentas (store, newData) {
+      store.commit('SET_Ventas', newData)
     },
-    setegresos (store, newData) {
-      store.commit('SET_EGRESOS', newData)
+    setCompras (store, newData) {
+      store.commit('SET_Compras', newData)
     }
   }
 })
