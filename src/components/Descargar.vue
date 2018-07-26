@@ -165,63 +165,63 @@ export default {
     },
     ComprasXlsx: function () {
       let lista = []
-      for (let i = 0; i < this.Ventas.length; i++) {
+      for (let i = 0; i < this.Compras.length; i++) {
         lista.push(
           {
-            value: this.Ventas[i].ruc,
+            value: this.Compras[i].ruc,
             type: 'string'
           },
           {
-            value: this.Ventas[i].dv,
+            value: this.Compras[i].dv,
             type: 'string'
           },
           {
-            value: this.Ventas[i].nombre,
+            value: this.Compras[i].nombre,
             type: 'string'
           },
           {
-            value: this.Ventas[i].numero,
+            value: this.Compras[i].timbrado,
             type: 'string'
           },
           {
-            value: this.Ventas[i].fecha,
+            value: this.Compras[i].numero,
             type: 'string'
           },
           {
-            value: Math.round(this.Ventas[i].iva10 / 1.1),
-            type: 'number'
-          },
-          {
-            value: Math.round(this.Ventas[i].iva10 / 11),
-            type: 'number'
-          },
-          {
-            value: Math.round(this.Ventas[i].iva05 / 1.05),
-            type: 'number'
-          },
-          {
-            value: Math.round(this.Ventas[i].iva05 / 21),
-            type: 'number'
-          },
-          {
-            value: this.Ventas[i].ivaEX,
-            type: 'number'
-          },
-          {
-            value: this.Ventas[i].iva10 + this.Ventas[i].iva5 + this.Ventas[i].ivaEX,
-            type: 'number'
-          },
-          {
-            value: this.Ventas[i].condicion,
+            value: this.Compras[i].fecha,
             type: 'string'
           },
           {
-            value: this.Ventas[i].cuotas,
+            value: Math.round(this.Compras[i].iva10 / 1.1),
             type: 'number'
           },
           {
-            value: this.Ventas[i].timbrado,
+            value: Math.round(this.Compras[i].iva10 / 11),
+            type: 'number'
+          },
+          {
+            value: Math.round(this.Compras[i].iva05 / 1.05),
+            type: 'number'
+          },
+          {
+            value: Math.round(this.Compras[i].iva05 / 21),
+            type: 'number'
+          },
+          {
+            value: this.Compras[i].ivaEX,
+            type: 'number'
+          },
+          {
+            value: this.Compras[i].iva10 + this.Compras[i].iva5 + this.Compras[i].ivaEX,
+            type: 'number'
+          },
+          {
+            value: this.Compras[i].condicion,
             type: 'string'
+          },
+          {
+            value: this.Compras[i].cuotas,
+            type: 'number'
           }
         )
       }
