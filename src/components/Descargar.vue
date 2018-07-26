@@ -14,7 +14,7 @@
 import zipcelx from 'zipcelx'
 
 export default {
-  name: 'Botones de descarga',
+  name: 'descarga',
   data: function () {
     return {
       nombre: ''
@@ -34,9 +34,68 @@ export default {
   },
   methods: {
     VentasXlsx: function () {
-      let lista = []
+      let lista = [
+        [
+          {
+            value: 'RUC',
+            type: 'string'
+          },
+          {
+            value: 'DV',
+            type: 'string'
+          },
+          {
+            value: 'Razon Social',
+            type: 'string'
+          },
+          {
+            value: 'Numero Documento',
+            type: 'string'
+          },
+          {
+            value: 'Fecha',
+            type: 'string'
+          },
+          {
+            value: 'Liquidacion 10%',
+            type: 'string'
+          },
+          {
+            value: 'Iva 10%',
+            type: 'string'
+          },
+          {
+            value: 'Liquidacion 5%',
+            type: 'string'
+          },
+          {
+            value: 'Iva 5%',
+            type: 'string'
+          },
+          {
+            value: 'Excenta',
+            type: 'string'
+          },
+          {
+            value: 'Total',
+            type: 'string'
+          },
+          {
+            value: 'Condicion',
+            type: 'string'
+          },
+          {
+            value: 'Cuotas',
+            type: 'string'
+          },
+          {
+            value: 'Timbrado',
+            type: 'string'
+          }
+        ]
+      ]
       for (let i = 0; i < this.Ventas.length; i++) {
-        lista.push(
+        lista.push([
           {
             value: this.Ventas[i].ruc,
             type: 'string'
@@ -93,80 +152,79 @@ export default {
             value: this.Ventas[i].timbrado,
             type: 'string'
           }
-        )
+        ])
       }
       const config = {
         filename: 'Ventas-' + this.nombre,
         sheet: {
-          data: [
-            [
-              {
-                value: 'RUC',
-                type: 'string'
-              },
-              {
-                value: 'DV',
-                type: 'string'
-              },
-              {
-                value: 'Razon Social',
-                type: 'string'
-              },
-              {
-                value: 'Numero Documento',
-                type: 'string'
-              },
-              {
-                value: 'Fecha',
-                type: 'string'
-              },
-              {
-                value: 'Liquidacion 10%',
-                type: 'string'
-              },
-              {
-                value: 'Iva 10%',
-                type: 'string'
-              },
-              {
-                value: 'Liquidacion 5%',
-                type: 'string'
-              },
-              {
-                value: 'Iva 5%',
-                type: 'string'
-              },
-              {
-                value: 'Excenta',
-                type: 'string'
-              },
-              {
-                value: 'Total',
-                type: 'string'
-              },
-              {
-                value: 'Condicion',
-                type: 'string'
-              },
-              {
-                value: 'Cuotas',
-                type: 'string'
-              },
-              {
-                value: 'Timbrado',
-                type: 'string'
-              }
-            ],
-            lista
-          ]
+          data: lista
         }
       }
       zipcelx(config)
     },
     ComprasXlsx: function () {
-      let lista = []
+      let lista = [
+        [
+          {
+            value: 'RUC',
+            type: 'string'
+          },
+          {
+            value: 'DV',
+            type: 'string'
+          },
+          {
+            value: 'Razon Social',
+            type: 'string'
+          },
+          {
+            value: 'Timbrado',
+            type: 'string'
+          },
+          {
+            value: 'Numero Documento',
+            type: 'string'
+          },
+          {
+            value: 'Fecha',
+            type: 'string'
+          },
+          {
+            value: 'Liquidacion 10%',
+            type: 'string'
+          },
+          {
+            value: 'Iva 10%',
+            type: 'string'
+          },
+          {
+            value: 'Liquidacion 5%',
+            type: 'string'
+          },
+          {
+            value: 'Iva 5%',
+            type: 'string'
+          },
+          {
+            value: 'Excenta',
+            type: 'string'
+          },
+          {
+            value: 'Total',
+            type: 'string'
+          },
+          {
+            value: 'Condicion',
+            type: 'string'
+          },
+          {
+            value: 'Cuotas',
+            type: 'string'
+          }
+        ]
+      ]
       for (let i = 0; i < this.Compras.length; i++) {
-        lista.push(
+        lista.push([
           {
             value: this.Compras[i].ruc,
             type: 'string'
@@ -212,7 +270,7 @@ export default {
             type: 'number'
           },
           {
-            value: this.Compras[i].iva10 + this.Compras[i].iva5 + this.Compras[i].ivaEX,
+            value: parseInt(this.Compras[i].iva10) + parseInt(this.Compras[i].iva05) + parseInt(this.Compras[i].ivaEX),
             type: 'number'
           },
           {
@@ -223,72 +281,12 @@ export default {
             value: this.Compras[i].cuotas,
             type: 'number'
           }
-        )
+        ])
       }
       const config = {
         filename: 'Compras-' + this.nombre,
         sheet: {
-          data: [
-            [
-              {
-                value: 'RUC',
-                type: 'string'
-              },
-              {
-                value: 'DV',
-                type: 'string'
-              },
-              {
-                value: 'Razon Social',
-                type: 'string'
-              },
-              {
-                value: 'Timbrado',
-                type: 'string'
-              },
-              {
-                value: 'Numero Documento',
-                type: 'string'
-              },
-              {
-                value: 'Fecha',
-                type: 'string'
-              },
-              {
-                value: 'Liquidacion 10%',
-                type: 'string'
-              },
-              {
-                value: 'Iva 10%',
-                type: 'string'
-              },
-              {
-                value: 'Liquidacion 5%',
-                type: 'string'
-              },
-              {
-                value: 'Iva 5%',
-                type: 'string'
-              },
-              {
-                value: 'Excenta',
-                type: 'string'
-              },
-              {
-                value: 'Total',
-                type: 'string'
-              },
-              {
-                value: 'Condicion',
-                type: 'string'
-              },
-              {
-                value: 'Cuotas',
-                type: 'string'
-              }
-            ],
-            lista
-          ]
+          data: lista
         }
       }
       zipcelx(config)
