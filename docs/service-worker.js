@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4f75587f12322e481921e2d726877235.js"
+  "/precache-manifest.1c55255fdfcbb948337a5af42f46a1d4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "calculoIva"});
